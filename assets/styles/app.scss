@@ -1,0 +1,16 @@
+$primary : #AD0E0E;
+$secondary : #FFE600;
+$dark : #110202;
+$light : #FFFAFA;
+@import "bootstrap/scss/bootstrap";
+body {
+    background-color: $dark;
+}
+
+h1{
+    color : $secondary;
+}
+
+h2,h3 {
+    color: $light;
+}
