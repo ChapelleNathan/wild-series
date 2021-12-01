@@ -9,7 +9,13 @@
 <h3>Liste des episodes :</h3>
 <ul>
     {% for episode in season.episodes %}
-    <li><a href="">Episode {{ episode.id }} : <span class="fst-italic">{{ episode.title }}</span></a></li>
+    <li><a href="{{ path('program_episode_show', 
+        {
+            program: season.program.id,
+            season: season.id,
+            episode: episode.id
+        }) 
+    }}">Episode {{ episode.number }} : <span class="fst-italic">{{ episode.title }}</span></a></li>
     {% endfor %}
 </ul>
 
