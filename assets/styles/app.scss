@@ -3,6 +3,7 @@ $secondary : #FFE600;
 $dark : #110202;
 $light : #FFFAFA;
 @import "bootstrap/scss/bootstrap";
+
 body {
     background-color: $dark;
 }
@@ -13,4 +14,8 @@ h1{
 
 h2,h3 {
     color: $light;
+}
+
+p {
+    color : $light;
 }
