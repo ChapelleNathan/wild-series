@@ -11,6 +11,6 @@
 {% else %}
 Aucune série trouvé
 {% endfor %}
-
-<a href="{{ path('app_index') }}">Retour a l'acceuil</a>
+<a class="btn btn-primary" href="{{ path('program_new') }}">Ajouter un nouveau programme</a>
+<br><a href="{{ path('app_index') }}">Retour a l'acceuil</a>
 {% endblock %}
