@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/"><h1 class="fs-3 m-0">Wild Series</h1></a>
+        <a class="navbar-brand" href="/">
+            <h1 class="fs-3 m-0">Wild Series</h1>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,17 +17,16 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ path("category_index") }}">Category</a></li>
                         <li><a class="dropdown-item" href="{{ path("program_index") }}">Program</a></li>
-                        <li><a class="dropdown-item" href="{{ path("season_index") }}">Season</a></li>
-                        <li><a class="dropdown-item" href="{{ path("episode_index") }}">Episodes</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Acteurs
+                        Admin
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Moi</a></li>
+                        <li><a class="dropdown-item" href="{{ path("season_index") }}">Season</a></li>
+                        <li><a class="dropdown-item" href="{{ path("episode_index") }}">Episodes</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
