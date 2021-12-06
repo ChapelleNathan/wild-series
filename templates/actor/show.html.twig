@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{{ actor.name }}
+<ul>
+    {% for program in actor.programs %}
+        <li>{{ program.title }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

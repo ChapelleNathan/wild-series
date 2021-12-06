@@ -22,6 +22,22 @@ Série #{{ program.id }}
         </div>
     </div>
     <div class="row p-0">
+        <h3>Acteurs :</h3>
+    </div>
+    <div class="row my-3">
+        {% for actor in program.actors %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{ actor.name }}</h4>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <li><p>Pas d'acteur pour cette série</p></li>
+        {% endfor %}
+    </div>
+    <div class="row p-0">
         <h3>Saisons :</h3>
     </div>
     <div class="row my-3">
