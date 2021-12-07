@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Actor;
+use App\Entity\Category;
 use App\Entity\Program;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,8 +19,20 @@ class ProgramType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('summary', TextareaType::class)
-            ->add('poster', TextType::class,)
-            ->add('category', null, ['choice_label' => 'name'])
+            ->add('poster', TextType::class,[
+                'attr' => ['required' => false]
+            ])
+            ->add('category', EntityType::class,[
+                'class' => Category::class,
+                'choice_label' => 'name'
+            ])
+            ->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => 'name',
+                'expanded' => 'true',
+                'multiple' => 'true',
+                'by_reference' => false,
+            ])
         ;
     }
 

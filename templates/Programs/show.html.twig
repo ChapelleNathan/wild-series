@@ -26,7 +26,7 @@ Série #{{ program.id }}
     </div>
     <div class="row my-3">
         {% for actor in program.actors %}
-        <div class="col">
+        <div class="col-3">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{ actor.name }}</h4>
@@ -34,7 +34,9 @@ Série #{{ program.id }}
             </div>
         </div>
         {% else %}
-            <li><p>Pas d'acteur pour cette série</p></li>
+        <li>
+            <p>Pas d'acteur pour cette série</p>
+        </li>
         {% endfor %}
     </div>
     <div class="row p-0">
@@ -46,6 +48,8 @@ Série #{{ program.id }}
             <a class="btn btn-primary"
                 href="{{ path('program_season_show', {program: program.id, season: season.id} )}}">{{ season.number
                 }}</a>
+            {% else %}
+            <p>Pas de saison pour le moment</p>
             {% endfor %}
         </div>
     </div>
