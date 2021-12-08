@@ -1,0 +1,8 @@
+{% extends "Includes/_email.html.twig" %}
+{% block title %}New Episode of {{ episode.season.program.title }} !{% endblock %}
+{% block body %}
+<h1>New Episode of {{ episode.season.program.title }} is here</h1>
+<h2>Episode {{ episode.number }} : {{ episode.title }}</h2>
+<p>Summary : </p>
+<p>{{ episode.synopsis }}</p>
+{% endblock %}
