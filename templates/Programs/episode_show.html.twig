@@ -10,7 +10,7 @@
 <br>
 <a href="{{ path('program_season_show', 
 {
-    program: episode.season.program.id,
+    programSlug: episode.season.program.slug,
     season: episode.season.id
 })
 }}">Retour a la Saison {{ episode.season.number }}</a>

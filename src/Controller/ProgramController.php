@@ -6,6 +6,7 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
 use App\Form\ProgramType;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,13 +20,15 @@ class ProgramController extends AbstractController
     /** 
      * @Route ("/new", name="new")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             $entityManager->persist($program);
             $entityManager->flush();
             return $this->redirectToRoute('program_index');
@@ -43,7 +46,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route ("/{id}", methods={"GET"}, requirements={"id"="\d+"}, name="show")
+     * @Route ("/{slug}", methods={"GET"}, name="show")
      */
     public function show(Program $program): Response
     {
@@ -51,7 +54,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route ("/{program}/saison/{season}", requirements={"program"="\d+", "season"="\d+"}, name="season_show")
+     * @Route ("/{programSlug}/saison/{season}", requirements={"program"="\d+", "season"="\d+"}, name="season_show")
      */
     public function showSeason(Season $season): Response
     {
@@ -60,11 +63,9 @@ class ProgramController extends AbstractController
 
     /**
      * @Route(
-     * "/{program}/saison/{season}/episode/{episode}",
+     * "/{programSlug}/saison/{season}/{episodeSlug}",
      * requirements={
-     *      "program"="\d+",
      *      "season"="\d+",
-     *      "episode"="\d+",
      * },
      * name="episode_show"
      * )

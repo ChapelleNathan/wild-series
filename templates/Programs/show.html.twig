@@ -46,8 +46,8 @@ Série #{{ program.id }}
         <div class="btn-group" role="group" aria-label="Basic example">
             {% for season in program.seasons %}
             <a class="btn btn-primary"
-                href="{{ path('program_season_show', {program: program.id, season: season.id} )}}">{{ season.number
-                }}</a>
+                href="{{ path('program_season_show', {programSlug: program.slug, season: season.id} )}}">{{
+                season.number}}</a>
             {% else %}
             <p>Pas de saison pour le moment</p>
             {% endfor %}
