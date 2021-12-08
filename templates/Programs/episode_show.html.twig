@@ -1,10 +1,10 @@
 {% extends "base.html.twig" %}
 {% block title %}
-{{ episode.season.program.title }} - S{{ episode.season.id }} - E{{ episode.number }}
+{{ episode.season.program.title }} - S{{ episode.season.number }} - E{{ episode.number }}
 {% endblock %}
 {% block body %}
 <h2><span class="fst-italic">{{ episode.season.program.title }}</span></h2>
-<h3>Saison {{ episode.season.id }} - Episode {{ episode.title }}</h3>
+<h3>Saison {{ episode.season.number }} - Episode {{ episode.number }} : <span class="fst-italic">{{ episode.title }}</span></h3>
 <h4>Résumé :</h4>
 <p>{{ episode.synopsis }}</p>
 <br>
@@ -13,5 +13,5 @@
     program: episode.season.program.id,
     season: episode.season.id
 })
-}}">Retour a la Saison {{ episode.season.id }}</a>
+}}">Retour a la Saison {{ episode.season.number }}</a>
 {% endblock %}

@@ -23,7 +23,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             pour certains plus dangereux encore que les rôdeurs eux-mêmes. 
             Ensemble, ils doivent faire face tant bien que mal à un monde devenu méconnaissable, 
             durant leur périple à travers le sud profond des États-Unis.',
-            'poster' => 'https://fr.web.img3.acsta.net/pictures/21/04/19/14/51/5593951.jpg',
+            'poster' => 'https://photos.tf1.fr/700/933/the-walking-dead-vignette_portrait-09f433-0@1x.webp',
             'category_id' => '4',
             'actor_id' => [0,1,2,3,4],
         ],
