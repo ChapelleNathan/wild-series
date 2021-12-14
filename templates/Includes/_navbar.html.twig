@@ -32,12 +32,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Mes Favoris</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Déconnexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">John Doe</a>
-                </li>
+                {% if app.user %}
+                    <li "nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link active" aria-current="page">{{ app.user.pseudo }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('login') }}" class="nav-link active" aria-current="page">Connexion</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
