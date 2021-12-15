@@ -5,11 +5,7 @@ body {
     background-color: $dark;
 }
 
-h1{
-    color : $secondary;
-}
-
-h2,h3,h4 {
+h1,h2,h3,h4 {
     color: $light;
 }
 
@@ -35,4 +31,16 @@ ul {
 
 .rate {
     color: rgb(207, 207, 207);
+}
+
+.card-title {
+    color : $primary;
+}
+
+.card-text {
+    color : $dark;
+}
+
+legend {
+    color : $light;
 }

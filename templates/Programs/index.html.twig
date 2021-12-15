@@ -10,42 +10,8 @@
             <h2 class="fs-1 my-3">Toutes nos Séries :</h2>
         </div>
     </div>
-    {% for program in programs %}
-    <div class="row my-4">
-        <div class="col">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{{ program.poster }}" class="img-fluid rounded-start"
-                            alt="poster de {{ program.title }}">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body test">
-                            <div class="content">
-                                <h3 class="card-title">{{ program.title }}</h3>
-                                <p class="card-text">{{ program.summary }}</p>
-                            </div>
-                            <div class="bottom">
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                    <div class="col-2">
-                                        <a href="{{ path('program_show', {slug : program.slug}) }}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor" class="bi bi-search me-2 mb-1" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                            </svg>Détails</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% for program in programs|reverse %}
+    {% include "Programs/_programCard.html.twig" %}
     {% else %}
     Aucune série trouvé
     {% endfor %}

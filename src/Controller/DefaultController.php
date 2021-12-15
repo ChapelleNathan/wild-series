@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ProgramRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,9 @@ class DefaultController extends AbstractController
     /**
      * @Route ("/", name="index")
      */
-    public function index(): Response
+    public function index(ProgramRepository $programRepository): Response
     {
-        return $this->render('index.html.twig');
+        $lastReleases = $programRepository->findBy([],['id' => 'desc'],3);
+        return $this->render('index.html.twig', ['lastReleases' => $lastReleases]);
     }
 }
