@@ -27,6 +27,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             'poster' => 'https://photos.tf1.fr/700/933/the-walking-dead-vignette_portrait-09f433-0@1x.webp',
             'category_id' => '4',
             'actor_id' => [0,1,2,3,4],
+            'owner' => '1',
         ],
         [
             'title' => 'Arcane',
@@ -41,6 +42,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             deux scientifiques ayant découvert et stabilisé une molécule permettant de grandes avancées technologiques.',
             'poster' => 'https://media-mcetv.ouest-france.fr/wp-content/uploads/2021/11/arcane-la-serie-netflix-inspiree-de-lol-aura-droit-a-une-saison-2jpeg-min.jpeg',
             'category_id' => '0',
+            'owner' => '0',
         ],
         [
             'title' => 'Your Lie In April',
@@ -61,6 +63,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             d\'entendre les notes de son piano, ce que empêche celui-ci d\'exceller dans sa préstation.',
             'poster' => 'https://fr.web.img4.acsta.net/pictures/19/07/11/17/07/1342802.jpg',
             'category_id' => '4',
+            'owner' => '1',
         ],
         [
             'title' => 'Food Wars',
@@ -72,6 +75,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             atteindre son objectif ?',
             'poster' => 'https://upload.wikimedia.org/wikipedia/en/d/d3/Shokugeki_no_Souma_Volume_1.jpg',
             'category_id' => '2',
+            'owner' => '0',
         ],
         [
             'title' => 'Violet Evergarden',
@@ -87,6 +91,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             Ainsi commence la quête de Violet Evergarden, apprentissage mêlé de lettres, de rencontres et d\'émotions variées…',
             'poster' => 'https://media.senscritique.com/media/000017531482/source_big/Violet_Evergarden.jpg',
             'category_id' => '5',
+            'owner' => '1',
         ]
     ];
     public function load(ObjectManager $manager): void
@@ -104,6 +109,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
                     $newProgram->addActor($this->getReference('actor_' . $actorId));
                 }
             }
+            $newProgram->setOwner($this->getReference('user_' . $program['owner']));
             $manager->persist($newProgram);
             $this->addReference('program_'  . $key, $newProgram);
         }
@@ -113,6 +119,6 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [ActorFixtures::class, CategoryFixtures::class];
+        return [ActorFixtures::class, CategoryFixtures::class, UserFixtures::class];
     }
 }

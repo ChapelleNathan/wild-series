@@ -8,7 +8,6 @@ use App\Entity\Season;
 use App\Entity\Episode;
 use App\Form\CommentType;
 use App\Form\ProgramType;
-use App\Repository\CommentRepository;
 use App\Service\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/program", name="program_")
@@ -36,6 +36,7 @@ class ProgramController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $slugify->generate($program->getTitle());
             $program->setSlug($slug);
+            $program->setOwner($this->getUser());
             $entityManager->persist($program);
             $entityManager->flush();
 
@@ -116,5 +117,28 @@ class ProgramController extends AbstractController
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    /**
+     * @Route("/{slug}/edit", name="edit")
+     */
+    public function edit(Request $request, Program $program, EntityManagerInterface $entityManager): Response
+    {
+        if (!$this->getUser() == $program->getOwner()) {
+            throw new AccessDeniedException('Only the owner of the program can edit it');
+        }
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('program_show',['slug' => $program->getSlug()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('Programs/edit.html.twig',
+        [
+            'program' => $program,
+            'form' => $form,
+        ]
+    );
     }
 }

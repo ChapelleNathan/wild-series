@@ -40,7 +40,17 @@
                     {{ comment.user.pseudo }}
                 </div>
                 <div class="card-body">
-                    <p class="card-text p-card">{{ comment.comment }}</p>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text rate fs-6">Note : {{ comment.rate }}</p>
+                            <p class="card-text p-card">{{ comment.comment }}</p>
+                        </div>
+                        {% if is_granted('ROLE_ADMIN') or comment.user == app.user %}
+                        <div class="col-3 d-flex justify-content-end align-items-end">
+                            {% include "comment/_delete_form.html.twig" %}
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             {% endfor %}

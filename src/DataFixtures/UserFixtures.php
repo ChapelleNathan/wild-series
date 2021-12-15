@@ -29,13 +29,14 @@ class UserFixtures extends Fixture
     ];
     public function load(ObjectManager $manager): void
     {
-        foreach (self::USERS as $user) {
+        foreach (self::USERS as $key => $user) {
             $newUser = new User();
             $newUser->setEmail($user['email']);
             $newUser->setPseudo($user['pseudo']);
             $newUser->setPassword($this->passwordHasher->hashPassword($newUser, $user['password']));
             $newUser->setRoles($user['roles']);
             $manager->persist($newUser);
+            $this->setReference('user_' . $key, $newUser);
         }
         
 

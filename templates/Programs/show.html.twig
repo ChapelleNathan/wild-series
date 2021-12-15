@@ -9,7 +9,7 @@ Série #{{ program.id }}
 <div class="container">
     <div class="row my-3 mt-5">
         <div class="col">
-            <img src="{{ program.poster }}" alt="{{ program.title }} poster" class="align-self-start mr-3">
+            <img src="{{ program.poster }}" alt="{{ program.title }} poster" class="align-self-start mr-3 rounded-1">
         </div>
     </div>
     <div class="row my-3">
@@ -53,6 +53,13 @@ Série #{{ program.id }}
             {% endfor %}
         </div>
     </div>
+    {% if is_granted("ROLE_ADMIN") or program.owner == app.user %}
+    <div class="row my-5 mt-4">
+        <div class="col-3">
+            <a class="btn btn-danger" href="{{ path('program_edit', {slug: program.slug}) }}">Éditer</a>
+        </div>
+    </div>
+    {% endif %}
     <div class="row my-5 mt-4">
         <div class="col-3">
             <a class="btn btn-secondary" href="{{ path('program_index') }}"><svg xmlns="http://www.w3.org/2000/svg"

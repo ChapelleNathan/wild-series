@@ -47,11 +47,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Program::class, mappedBy="owner", orphanRemoval=true)
+     */
+    private $programs;
+
 
     public function __construct()
     {
         $this->episode = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->programs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,6 +193,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Program[]
+     */
+    public function getPrograms(): Collection
+    {
+        return $this->programs;
+    }
+
+    public function addProgram(Program $program): self
+    {
+        if (!$this->programs->contains($program)) {
+            $this->programs[] = $program;
+            $program->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgram(Program $program): self
+    {
+        if ($this->programs->removeElement($program)) {
+            // set the owning side to null (unless already changed)
+            if ($program->getOwner() === $this) {
+                $program->setOwner(null);
             }
         }
 
