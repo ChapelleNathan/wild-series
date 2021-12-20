@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block title %}
+{{ parent() }} - Mon profil
+{% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="row text-center">
+        <h1>Bonjour {{ app.user.pseudo }} !</h1>
+    </div>
+    <section class="user">
+        <div class="row">
+            <ul>
+                <li>
+                    Email : {{ app.user.email }}
+                </li>
+                <li>
+                    Pseudo : {{ app.user.pseudo }}
+                </li>
+            </ul>
+        </div>
+    </section>
+</main>
+{% endblock %}

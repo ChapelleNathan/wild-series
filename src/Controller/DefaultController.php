@@ -21,4 +21,12 @@ class DefaultController extends AbstractController
         $lastReleases = $programRepository->findBy([],['id' => 'desc'],3);
         return $this->render('index.html.twig', ['lastReleases' => $lastReleases]);
     }
+
+    /**
+     * @Route("/mon-profile", name="profile")
+     */
+    public function profile(): Response
+    {
+        return $this->render('profile.html.twig');
+    }
 }
