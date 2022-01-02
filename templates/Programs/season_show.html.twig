@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
 {% block title %}
-{{ season.program.title }} - Saison {{ season.number }}
+{{ season.program.title }} - {{'season'|trans}} {{ season.number }}
 {% endblock %}
 {% block body %}
-<h2>Saison {{ season.number }} de <span class="fst-italic">"{{ season.program.title }}"</span></h2>
-<p>Année de publication : {{ season.year }}</p>
-<p>Description : {{ season.description }}</p>
-<h3>Liste des episodes :</h3>
+<h2>{% trans with {'%seasonNumber%': season.number, '%program%': season.program.title} %} season_of {% endtrans %}</h2>
+<p>{{'publication'|trans}} : {{ season.year }}</p>
+<p>{{ 'description'|trans }} : {{ season.description }}</p>
+<h3>{{ 'episode'|trans }} :</h3>
 <ul>
     {% for episode in season.episodes %}
     <li><a href="{{ path('program_episode_show', 
@@ -19,5 +19,5 @@
     {% endfor %}
 </ul>
 
-<a href="{{ path('program_show', {slug: season.program.slug}) }}">{{ season.program.title }}</a>
+<a class="btn btn-secondary" href="{{ path('program_show', {slug: season.program.slug}) }}">{{ 'back'|trans }}</a>
 {% endblock %}

@@ -11,9 +11,9 @@ Catégorie - {{ category }}
 {% include "Programs/_programCard.html.twig" %}
 {% endfor %}
 {% else %}
-    <p>Pas de programme dans cette catégorie</p>
+    <p>{{ 'noCategory'|trans }}</p>
 {% endif %}
 
 
-<a class="btn btn-primary my-3" href="{{ path('category_index') }}">Retour à la liste de la catégorie</a>
+<a class="btn btn-primary my-3" href="{{ path('category_index') }}">{{ 'back'|trans }}</a>
 {% endblock %}

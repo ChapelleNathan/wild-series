@@ -1,16 +1,16 @@
 {% extends "base.html.twig" %}
-{% block title %}Wild Series - Accueil{% endblock %}
+{% block title %}Wild Series - {{ 'home'|trans }}{% endblock %}
 {% block body %}
 <main class="container">
     <div class="row mt-5">
         {% if app.user %}
-        <h2>Bonjour {{ app.user.pseudo }} !</h2>
+        <h2>{% trans with {'%username%': app.user.pseudo} %} hello_username {% endtrans %}!</h2>
         {% else %}
-        <p>Pas de compte ? <a href="{{ path('app_register') }}">Je m'inscris</a></p>
+        <p>Pas de compte ? <a href="{{ path('app_register') }}">{{ 'account.register'|trans }}</a></p>
         {% endif %}
     </div>
     <section class="lastReleases my-5">
-        <h2>Voici les dernières sorties :</h2>
+        <h2>{{ 'last_release'|trans }} :</h2>
         <div class="row">
             {% for lastRelease in lastReleases %}
             <div class="col">
@@ -20,7 +20,7 @@
                         <h3 class="card-title">{{ lastRelease.title }}<h3>
                                 <p class="card-text fs-6">{{ lastRelease.summary|u.truncate(300,'...') }}</p>
                                 <a href="{{ path('program_show', {slug : lastRelease.slug}) }}"
-                                    class="btn btn-primary">Détails</a>
+                                    class="btn btn-primary">{{ 'details'|trans }}</a>
                     </div>
                 </div>
             </div>

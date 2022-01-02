@@ -1,0 +1,44 @@
+hello_username: 'Hello %username%'
+account.register: 'Create Account'
+account.sign_in: 'Sign In'
+last_release: 'Last Release'
+details: Details
+category: Categories
+program: Programs
+season: Seasons
+episode: Episodes
+logout: Logout
+language: Languages
+password: Password
+allCategories: 'Our Categories'
+addCategory: 'Add a category'
+number: Number
+year: Year
+description: Description
+action: Action
+edit: Edit
+noSeason: No season as been found
+add: Add
+newSeason: New Season
+back: Back
+editSeason: Edit Season
+delete: Delete
+newCategory: New Category
+noCategory: No category as been found
+ourPrograms: Our Programs
+noProgram: No program as been found
+newProgram: New Program
+home: home
+season_of: Season %seasonNumber% of %program%
+publication: Year of Release
+actors: Actors
+noActor: No actor as been found
+episode_of: "Season %seasonNumber% - Episode %episodeNumber% : %episodeTitle%"
+summary: Summary
+comments: Comments
+addComment: Add comment
+rate: Rate
+title: Title
+noEpisode: No episode as been found
+addEpisode: Add episode
+editEpisode: Edit episode

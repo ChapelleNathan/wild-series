@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% block title %}
-Nouveau programme
+{{ parent() }} - {{ 'newProgram'|trans }}
 {% endblock %}
 {% block body %}
 <main class="container">
@@ -9,10 +9,10 @@ Nouveau programme
         {{ form_widget(form) }}
         <div class="row">
             <div class="col-1">
-                <button class="btn btn-success">Ajouter</button>
+                <button class="btn btn-success">{{ 'add'|trans }}</button>
             </div>
             <div class="col-1">
-                <a class="btn btn-secondary" href="{{ path('program_index') }}">Retour</a>
+                <a class="btn btn-secondary" href="{{ path('program_index') }}">{{ 'back'|trans }}</a>
             </div>
         </div>
         {{ form_end(form) }}

@@ -1,0 +1,45 @@
+welcome: Bienvenue
+account.register: 'Créer un compte'
+account.sign_in: 'Se connecter'
+hello_username: 'Bonjour %username%'
+category: Catégories
+program: Programmes
+season: Saisons
+episode: Épisodes
+logout: Déconnexion
+last_release: Dernières Sorties
+details: Détails
+language: Langues
+password: Mot de Passe
+allCategories: Nos catégories
+addCategory: Ajouter une catégorie
+noCategory: Pas de Catégorie trouvé
+back: Retour
+add: Ajouter
+newCategory: Nouvelle Catégorie
+newProgram: Nouveau programme
+home: Accueil
+ourPrograms: Nos Programmes
+actors: Acteurs
+noActor: Pas d'acteur pour la série
+edit: Éditer
+noSeason: Pas de Saison trouvée
+season_of: Saison %seasonNumber% de "%program%"
+publication: Année de publication
+description: Description
+episode_of: "Saison %seasonNumber% - Épisode %episodeNumber% : %episodeTitle% " 
+summary: Résumé
+comments: Commentaires
+addComment: Ajouter un commentaire
+rate: Note
+delete: Supprimer
+noProgram: Aucun programme
+number: Numéro
+year: Année
+action: Actions
+newSeason: Nouvelle Saison
+editSeason: Editer une Saison
+title: Titre
+noEpisode: Aucun épisode trouvé
+addEpisode: Ajouter un Episode
+editEpisode: Modifier un Episode

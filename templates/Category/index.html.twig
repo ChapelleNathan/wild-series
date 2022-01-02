@@ -6,7 +6,7 @@ Toutes les Catégories
 <div class="container">
     <div class="row my-3">
         <div class="col">
-            <h2>Toutes les catégories</h2>
+            <h2>{{ 'allCategories'|trans }}</h2>
         </div>
     </div>
     <div class="row">
@@ -24,8 +24,7 @@ Toutes les Catégories
                             class="bi bi-search me-2 mb-1" viewBox="0 0 16 16">
                             <path
                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </svg>Détail
-                        de la catégorie</a>
+                        </svg>{{ 'details'|trans }}</a>
                 </div>
             </div>
             {% endfor %}
@@ -33,7 +32,7 @@ Toutes les Catégories
     </div>
 
 
-    <br><a class="btn btn-primary" href="{{ path('category_new') }}">Créer une catégorie</a>
+    <br><a class="btn btn-primary" href="{{ path('category_new') }}">{{ 'addCategory'|trans }}</a>
 </div>
 
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends "base.html.twig" %}
 {% block title %}
-Nouvelle Catégorie
+{{ 'newCategory'|trans }}
 {% endblock %}
 {% block body %}
 {{ form_start(form) }}
 {{ form_widget(form) }}
-<button>Ajouter</button>
+<button>{{ 'add'|trans }}</button>
 {{ form_end(form) }}
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Season index{% endblock %}
+{% block title %}{{parent()}} {{ 'season'|trans }} index{% endblock %}
 
 {% block body %}
-    <h1>Season index</h1>
+    <h1>{{ 'season'|trans }} index</h1>
     {% for category, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
@@ -15,32 +15,30 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Number</th>
-                <th>Year</th>
-                <th>Description</th>
-                <th>actions</th>
+                <th>{{ 'number'|trans }}</th>
+                <th>{{ 'year'|trans }}</th>
+                <th>{{ 'description'|trans }}</th>
+                <th>{{ 'action'|trans }}</th>
             </tr>
         </thead>
         <tbody>
         {% for season in seasons %}
             <tr>
-                <td>{{ season.id }}</td>
                 <td>{{ season.number }}</td>
                 <td>{{ season.year }}</td>
                 <td>{{ season.description }}</td>
                 <td>
-                    <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
-                    <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('season_show', {'id': season.id}) }}">{{ 'details'|trans }}</a>
+                    <a class="btn btn-secondary" href="{{ path('season_edit', {'id': season.id}) }}">{{ 'edit'|trans }}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">{{ 'noSeason'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('season_new') }}">Ajouter une Saison</a>
+    <a class="btn btn-secondary" href="{{ path('season_new') }}">{{ 'add'|trans }}</a>
 {% endblock %}

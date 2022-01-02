@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello LoginController!{% endblock %}
+{% block title %}{{ parent() }} - {{ 'account.sign_in'|trans }}{% endblock %}
 {% block body %}
 
 <div class="container">
@@ -10,10 +10,10 @@
         <label for="username" class="form-label">Email</label>
         <input type="email" name="_username" id="username" class="form-control" value="{{ last_username }}">
 
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label">{{ 'password'|trans }}</label>
         <input type="password" name="_password" id="password" class="form-control">
 
-        <button class="btn btn-danger">submit</button>
+        <button class="btn btn-danger">{{ 'account.sign_in'|trans }}</button>
     </form>
 </div>
 
