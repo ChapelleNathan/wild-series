@@ -173,12 +173,12 @@ class ProgramController extends AbstractController
     {
         if ($this->getUser()->isInWatchlist($program)) {
             $this->getUser()->removeFromWatchlist($program);
-            $this->addFlash('warning', 'Le programme a bien été retiré de votre watchlist');
         } else {
             $this->getUser()->addToWatchList($program);
-            $this->addFlash('success', 'Le programme a bien été ajouté a votre watchlist');
         }
         $entityManager->flush();
-        return $this->redirectToRoute('program_show', ['slug' => $program->getSlug()], Response::HTTP_SEE_OTHER);
+        return $this->json([
+            'isInWatchlist' => $this->getUser()->isInWatchlist($program)
+        ]);
     }
 }
