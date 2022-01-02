@@ -6,6 +6,7 @@ use App\Repository\ProgramRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\CategoryRepository;
 
 /**
      * @Route ("/", name="app_")
@@ -28,5 +29,10 @@ class DefaultController extends AbstractController
     public function profile(): Response
     {
         return $this->render('profile.html.twig');
+    }
+
+    public function navbarTop(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('Includes/navbartop.html.twig', ['categories' => $categoryRepository->findBy([], ['id' => 'DESC'])]);
     }
 }
