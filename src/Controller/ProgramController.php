@@ -8,6 +8,8 @@ use App\Entity\Season;
 use App\Entity\Episode;
 use App\Form\CommentType;
 use App\Form\ProgramType;
+use App\Form\SearchFormType;
+use App\Repository\ProgramRepository;
 use App\Service\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -51,13 +54,26 @@ class ProgramController extends AbstractController
         return $this->render('Programs/new.html.twig', ['form' => $form->createView()]);
     }
     /**
-     * @Route("/", methods={"GET"}, name="index")
+     * @Route("/",  name="index")
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request, ProgramRepository $programRepository): Response
     {
-        $programs = $this->getDoctrine()->getRepository(Program::class)->findAll();
-        return $this->render('Programs/index.html.twig', ['programs' => $programs]);
+        $form = $this->createForm(SearchFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            if ($search == '') {
+                $programs = $programRepository->findAll();
+            } else {
+                $programs = $programRepository->findLikeName($search);
+            }
+        } else {
+            $programs = $programRepository->findAll();
+        }
+
+        return $this->render('Programs/index.html.twig', ['programs' => $programs, 'form' => $form->createView()]);
     }
 
     /**
@@ -131,14 +147,15 @@ class ProgramController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            return $this->redirectToRoute('program_show',['slug' => $program->getSlug()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('program_show', ['slug' => $program->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('Programs/edit.html.twig',
-        [
-            'program' => $program,
-            'form' => $form,
-        ]
-    );
+        return $this->renderForm(
+            'Programs/edit.html.twig',
+            [
+                'program' => $program,
+                'form' => $form,
+            ]
+        );
     }
 }
