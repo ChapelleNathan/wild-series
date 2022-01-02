@@ -8,12 +8,12 @@ Série #{{ program.id }}
 {% block body %}
 <div class="container">
     {% for category, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
+    {% for message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
     {% endfor %}
     <div class="row my-3 mt-5">
         <div class="col">
@@ -23,7 +23,16 @@ Série #{{ program.id }}
     <div class="row my-3">
         <div class="card my-3">
             <div class="card-body">
-                <h2 class="card-title">{{ program.title }}</h2>
+                <div class="row">
+                    <div class="col-11">
+                        <h2 class="card-title">{{ program.title }}</h2>
+                    </div>
+                    <div class="col-1">
+                        <a href="{{ path('program_addToWatchlist', {id: program.id}) }}">
+                            <i class="{{ app.user.isInWatchlist(program) ? 'bi bi-star-fill' : 'bi bi-star' }}"></i>
+                        </a>
+                    </div>
+                </div>
                 <h3 class="card-subtitle mb-2 text-muted fs-5">Catégorie : {{ program.category.name }}</h3>
                 <p class="card-text">{{ program.summary }}</p>
             </div>

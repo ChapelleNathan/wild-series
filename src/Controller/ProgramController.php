@@ -11,6 +11,7 @@ use App\Form\ProgramType;
 use App\Form\SearchFormType;
 use App\Repository\ProgramRepository;
 use App\Service\Slugify;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -163,5 +164,21 @@ class ProgramController extends AbstractController
                 'form' => $form,
             ]
         );
+    }
+
+    /**
+     * @Route("/{id}/add_to_watchlist", name="addToWatchlist")
+     */
+    public function addToWatchList(Program $program, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->getUser()->isInWatchlist($program)) {
+            $this->getUser()->removeFromWatchlist($program);
+            $this->addFlash('warning', 'Le programme a bien été retiré de votre watchlist');
+        } else {
+            $this->getUser()->addToWatchList($program);
+            $this->addFlash('success', 'Le programme a bien été ajouté a votre watchlist');
+        }
+        $entityManager->flush();
+        return $this->redirectToRoute('program_show', ['slug' => $program->getSlug()], Response::HTTP_SEE_OTHER);
     }
 }
