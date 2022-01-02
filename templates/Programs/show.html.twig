@@ -7,6 +7,14 @@ Série #{{ program.id }}
 {% endblock %}
 {% block body %}
 <div class="container">
+    {% for category, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
     <div class="row my-3 mt-5">
         <div class="col">
             <img src="{{ program.poster }}" alt="{{ program.title }} poster" class="align-self-start mr-3 rounded-1">

@@ -21,7 +21,7 @@ class EpisodeType extends AbstractType
             ->add('season', EntityType::class, [
                 'class' => Season::class,
                 'choice_label' => 'number',
-                'by_reference' => 'false',
+                'by_reference' => false,
             ]);
     }
 
