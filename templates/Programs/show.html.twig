@@ -1,6 +1,6 @@
 {% extends "index.html.twig" %}
 {% block title %}
-Série #{{ program.id }}
+{{ parent() }} - {{ program.title }}
 {% endblock %}
 {% block stylesheets %}
 {{ encore_entry_link_tags('program_show') }}
