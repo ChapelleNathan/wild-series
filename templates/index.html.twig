@@ -15,7 +15,7 @@
             {% for lastRelease in lastReleases %}
             <div class="col">
                 <div class="card" style="width: 25rem;">
-                    <img src="{{ lastRelease.poster }}" class="card-img-top" alt="{{ lastRelease.title }} poster">
+                    <img src="{{ vich_uploader_asset(lastRelease) }}" class="card-img-top" alt="{{ lastRelease.title }} poster">
                     <div class="card-body">
                         <h3 class="card-title">{{ lastRelease.title }}<h3>
                                 <p class="card-text fs-6">{{ lastRelease.summary|u.truncate(300,'...') }}</p>

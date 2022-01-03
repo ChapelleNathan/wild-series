@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'actorIndex'|trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'actorIndex'|trans }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ 'name'|trans }}</th>
+                <th>{{ 'action'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actor in actors %}
+            <tr>
+                <td>{{ actor.name }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('actor_show', {'id': actor.id}) }}">{{ 'details'|trans }}</a>
+                    <a class="btn btn-secondary" href="{{ path('actor_edit', {'id': actor.id}) }}">{{ 'edit'|trans }}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">{{ 'noActor'|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('actor_new') }}">{{ 'add'|trans }}</a>
+{% endblock %}

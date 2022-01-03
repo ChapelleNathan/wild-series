@@ -1,9 +1,30 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'actors'|trans }}{% endblock %}
+
 {% block body %}
-{{ actor.name }}
-<ul>
-    {% for program in actor.programs %}
-        <li>{{ program.title }}</li>
-    {% endfor %}
-</ul>
+    <h1>{{ 'actors'|trans }} : {{ actor.name }}</h1>
+    <img src="{{ vich_uploader_asset(actor) }}" alt="{{ actor.name }}">
+    <h2>{{ 'appearIn'|trans }} :</h2>
+    {% if actor.programs is not empty %}
+    <table class="table">
+        <tbody>
+            {% for moovie in actor.programs %}
+                <tr>
+                    <th>{{ 'title'|trans }}</th>
+                    <td>{{ moovie.title }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>{{ 'noProgram'|trans }}</p>
+    {% endif %}
+    
+
+    <a class="btn btn-primary" href="{{ path('actor_index') }}">{{ 'back'|trans }}</a>
+
+    <a class="btn btn-secondary" href="{{ path('actor_edit', {'id': actor.id}) }}">{{ 'edit'|trans }}</a>
+
+    {{ include('actor/_delete_form.html.twig') }}
 {% endblock %}

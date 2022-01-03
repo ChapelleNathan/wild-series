@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Program;
 use App\Service\Slugify;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -24,7 +25,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             pour certains plus dangereux encore que les rôdeurs eux-mêmes. 
             Ensemble, ils doivent faire face tant bien que mal à un monde devenu méconnaissable, 
             durant leur périple à travers le sud profond des États-Unis.',
-            'poster' => 'https://photos.tf1.fr/700/933/the-walking-dead-vignette_portrait-09f433-0@1x.webp',
+            'poster' => 'the-walking-dead-vignette-portrait-09f433-0-1x-61d2c1a3babc6954338590.webp',
             'category_id' => '4',
             'actor_id' => [0,1,2,3,4],
             'owner' => '1',
@@ -40,7 +41,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             Le scénario suit principalement Jinx et Vi, deux sœurs ayant vécu une difficile enfance à Zaun, 
             mais qui, désormais adultes, mènent une vie très différente l\'une de l\'autre, ainsi que Jayce et Viktor, 
             deux scientifiques ayant découvert et stabilisé une molécule permettant de grandes avancées technologiques.',
-            'poster' => 'https://media-mcetv.ouest-france.fr/wp-content/uploads/2021/11/arcane-la-serie-netflix-inspiree-de-lol-aura-droit-a-une-saison-2jpeg-min.jpeg',
+            'poster' => 'arcane-61d2c1caac09f423852712.jpeg',
             'category_id' => '0',
             'owner' => '0',
         ],
@@ -61,7 +62,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             lien entre Kōsei et le piano en lui proposant de devenir son pianiste accompagnateur pour ses compétitions. 
             Cependant, le jeune homme ne s\'est jamais vraiment remis de la mort de sa mère, et n\'est plus capable 
             d\'entendre les notes de son piano, ce que empêche celui-ci d\'exceller dans sa préstation.',
-            'poster' => 'https://fr.web.img4.acsta.net/pictures/19/07/11/17/07/1342802.jpg',
+            'poster' => 'your-lie-in-april-61d2c18a8fa92404011000.jpg',
             'category_id' => '4',
             'owner' => '1',
         ],
@@ -73,7 +74,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             L\'esprit de compétition de Sôma va alors être mis à l\'épreuve par son père qui lui conseille de 
             rejoindre une école d\'élite culinaire, où seuls 10 % des élèves sont diplômés. Sôma va-t-il parvenir à 
             atteindre son objectif ?',
-            'poster' => 'https://upload.wikimedia.org/wikipedia/en/d/d3/Shokugeki_no_Souma_Volume_1.jpg',
+            'poster' => 'shokugeki-no-souma-volume-1-61d2c1686d8db526798473.jpg',
             'category_id' => '2',
             'owner' => '0',
         ],
@@ -89,7 +90,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             cours de la guerre, il y en a une qui semble ne pas vouloir se refermer. Les mots d\'un être cher résonnent encore 
             dans son cœur, sans que la jeune fille en sache la véritable raison. Elle veut savoir, comprendre leur signification. 
             Ainsi commence la quête de Violet Evergarden, apprentissage mêlé de lettres, de rencontres et d\'émotions variées…',
-            'poster' => 'https://media.senscritique.com/media/000017531482/source_big/Violet_Evergarden.jpg',
+            'poster' => 'violet-evergarden-61d2c148b34c7271475441.webp',
             'category_id' => '5',
             'owner' => '1',
         ]
@@ -110,6 +111,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
                 }
             }
             $newProgram->setOwner($this->getReference('user_' . $program['owner']));
+            $newProgram->setUpdatedAt(new DateTime('now'));
             $manager->persist($newProgram);
             $this->addReference('program_'  . $key, $newProgram);
         }
